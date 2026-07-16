@@ -532,14 +532,22 @@ function tipContent(kind,st,i){
   const where=(st==='ALL'?'All states':st)+' · '+P.periods[i].l;
   if(kind==='adl'||kind==='avt'){
     const isA=kind==='adl';
-    const unit=isA?'run':'sold';
-    const line=(lbl,r,n,muted)=>`<div class="tr${muted?' muted':''}"><span>${lbl}</span><span>${n?('$'+fmtInt(Math.round(r/n))+' · '+fmtInt(n)+' '+unit):'–'}</span></div>`;
+    const line=(lbl,r,den,run,muted)=>{
+      let right;
+      if(!den) right='–';
+      else if(isA) right='$'+fmtInt(Math.round(r/den))+' · '+fmtInt(den)+' run';
+      else{
+        const cr=run?(den/run*100).toFixed(1)+'%':'–';
+        right='$'+fmtInt(Math.round(r/den))+' · CR '+cr;
+      }
+      return `<div class="tr${muted?' muted':''}"><span>${lbl}</span><span>${right}</span></div>`;
+    };
     let h=`<div class="tt">${isA?'ADL':'AVT'} breakdown · ${where}</div>`;
-    h+=line('Overall',d.rev[i],isA?d.run[i]:d.sold[i],true);
-    h+=line('4A',d.r4a[i],isA?d.n4a[i]:d.s4a[i]);
-    h+=line('4B',d.r4b[i],isA?d.n4b[i]:d.s4b[i]);
-    h+=line('4C',d.r4c[i],isA?d.n4c[i]:d.s4c[i]);
-    if(DATA.hasMem) h+=line('Membership',d.rMem[i],isA?d.nMem[i]:d.sMem[i]);
+    h+=line('Overall',d.rev[i],isA?d.run[i]:d.sold[i],d.run[i],true);
+    h+=line('4A',d.r4a[i],isA?d.n4a[i]:d.s4a[i],d.n4a[i]);
+    h+=line('4B',d.r4b[i],isA?d.n4b[i]:d.s4b[i],d.n4b[i]);
+    h+=line('4C',d.r4c[i],isA?d.n4c[i]:d.s4c[i],d.n4c[i]);
+    if(DATA.hasMem) h+=line('Membership',d.rMem[i],isA?d.nMem[i]:d.sMem[i],d.nMem[i]);
     return h;
   }
   const key=kind==='canc'?'cancR':'lostR';
