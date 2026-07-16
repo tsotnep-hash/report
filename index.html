@@ -15,37 +15,37 @@
   --ctrl-h:56px;
 }
 *{box-sizing:border-box; margin:0; padding:0;}
-body{background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans',system-ui,sans-serif; font-size:14px;}
+body{background:var(--paper); color:var(--ink); font-family:'IBM Plex Sans',system-ui,sans-serif; font-size:15px;}
 button,select{font:inherit; color:inherit;}
 :focus-visible{outline:2px solid var(--spruce); outline-offset:2px; border-radius:4px;}
 
 /* ---------- header ---------- */
 header{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; padding:20px 24px 14px; border-bottom:1px solid var(--line);}
-.brand .eyebrow{font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); font-weight:600;}
-.brand h1{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:30px; line-height:1.1;}
+.brand .eyebrow{font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); font-weight:600;}
+.brand h1{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:32px; line-height:1.1;}
 .ticks{display:flex; gap:6px; margin-top:7px;}
 .ticks span{width:22px; height:4px; border-radius:2px;}
 .ticks .a{background:var(--spruce);} .ticks .b{background:var(--ochre);} .ticks .c{background:var(--slate);}
-.meta{text-align:right; font-size:12.5px; color:var(--mut); line-height:1.5;}
+.meta{text-align:right; font-size:13.5px; color:var(--mut); line-height:1.5;}
 .meta b{color:var(--ink); font-weight:600;}
 
 /* ---------- controls ---------- */
 .controls{position:sticky; top:0; z-index:30; display:flex; align-items:center; gap:12px; flex-wrap:wrap; padding:10px 24px; border-bottom:1px solid var(--line); background:var(--paper);}
 .grp{display:flex; align-items:center; gap:8px;}
-.grp .lbl{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--mut); font-weight:600;}
+.grp .lbl{font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--mut); font-weight:600;}
 .seg{display:flex; background:var(--card); border:1px solid var(--line); border-radius:10px; padding:3px;}
-.seg button{border:0; background:transparent; padding:6px 14px; border-radius:8px; cursor:pointer; font-weight:600; font-size:13px; color:var(--mut); white-space:nowrap;}
+.seg button{border:0; background:transparent; padding:6px 14px; border-radius:8px; cursor:pointer; font-weight:600; font-size:14px; color:var(--mut); white-space:nowrap;}
 .seg button.on{background:var(--spruce); color:#fff;}
 select{appearance:none; -webkit-appearance:none;
   background:var(--card) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1l4 4 4-4" fill="none" stroke="%2314594A" stroke-width="1.6" stroke-linecap="round"/></svg>') no-repeat right 12px center;
-  border:1px solid var(--line); border-radius:10px; padding:7px 32px 7px 12px; font-weight:600; font-size:13px; cursor:pointer; max-width:230px;}
+  border:1px solid var(--line); border-radius:10px; padding:7px 32px 7px 12px; font-weight:600; font-size:14px; cursor:pointer; max-width:240px;}
 .spacer{flex:1;}
-.ghost-btn{border:1px solid var(--line); background:var(--card); border-radius:10px; padding:7px 14px; cursor:pointer; font-weight:600; font-size:13px; color:var(--spruce);}
+.ghost-btn{border:1px solid var(--line); background:var(--card); border-radius:10px; padding:7px 14px; cursor:pointer; font-weight:600; font-size:14px; color:var(--spruce);}
 .ghost-btn[aria-expanded="true"]{background:var(--spruce); color:#fff; border-color:var(--spruce);}
 
 /* ---------- status ---------- */
-.status{padding:40px 24px; text-align:center; color:var(--mut); font-size:14px;}
-.status .box{display:inline-block; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px 30px; max-width:560px; text-align:left; line-height:1.6;}
+.status{padding:40px 24px; text-align:center; color:var(--mut); font-size:15px;}
+.status .box{display:inline-block; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:22px 30px; max-width:580px; text-align:left; line-height:1.6;}
 .status .box.center{text-align:center;}
 .spin{display:inline-block; width:14px; height:14px; border:2px solid var(--line); border-top-color:var(--spruce); border-radius:50%; margin-right:8px; vertical-align:-2px; animation:sp .8s linear infinite;}
 @keyframes sp{to{transform:rotate(360deg);}}
@@ -56,7 +56,7 @@ select{appearance:none; -webkit-appearance:none;
 /* ---------- definitions ---------- */
 .defs{display:none; padding:12px 24px 0;}
 .defs.open{display:block;}
-.defs-inner{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; columns:3; column-gap:32px; font-size:12.5px; line-height:1.55;}
+.defs-inner{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px 20px; columns:3; column-gap:32px; font-size:13.5px; line-height:1.55;}
 .defs-inner p{break-inside:avoid; margin-bottom:8px; color:var(--mut);}
 .defs-inner b{color:var(--ink); font-weight:600;}
 @media (max-width:900px){.defs-inner{columns:1;}}
@@ -68,27 +68,32 @@ section.state{margin-top:24px;}
   display:flex; align-items:baseline; justify-content:space-between; gap:10px 20px; flex-wrap:wrap;
   padding:10px 2px 8px; border-bottom:2px solid var(--ink);}
 .sec-title{display:flex; align-items:baseline; gap:10px;}
-.sec-title .code{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; letter-spacing:.03em; background:var(--ink); color:#fff; padding:2px 9px 3px; border-radius:7px;}
+.sec-title .code{font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:18px; letter-spacing:.03em; background:var(--ink); color:#fff; padding:2px 9px 3px; border-radius:7px;}
 .sec-title .code.all{background:var(--spruce);}
-.sec-title .full{font-weight:600; font-size:16px;}
-.sec-stats{display:flex; gap:6px 18px; flex-wrap:wrap; font-size:12px; color:var(--mut);}
-.sec-stats b{font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--ink); font-size:13px;}
+.sec-title .full{font-weight:600; font-size:17px;}
+.sec-stats{display:flex; gap:6px 18px; flex-wrap:wrap; font-size:13px; color:var(--mut);}
+.sec-stats b{font-family:'IBM Plex Mono',monospace; font-weight:600; color:var(--ink); font-size:14px;}
 
 /* ---------- table ---------- */
 .twrap{overflow-x:auto; margin-top:12px;}
-table{border-collapse:separate; border-spacing:0; background:var(--card); border:1px solid var(--line); border-radius:12px; min-width:100%; font-family:'IBM Plex Mono',monospace; font-size:12.5px;}
+table{border-collapse:separate; border-spacing:0; background:var(--card); border:1px solid var(--line); border-radius:12px; min-width:100%; font-family:'IBM Plex Mono',monospace; font-size:13.5px;}
 col.hov{background:#F5F8F4;}
-thead th{background:var(--card); border-bottom:1.5px solid var(--ink); padding:8px 10px 7px; text-align:right; white-space:nowrap; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:12px;}
-thead th .sub{display:block; font-weight:400; font-size:10.5px; color:var(--mut); margin-top:1px;}
-thead th:first-child{position:sticky; left:0; z-index:4; background:var(--card); text-align:left; min-width:200px; font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--mut); border-right:1px solid var(--line); border-top-left-radius:12px;}
+thead th{background:var(--card); border-bottom:1.5px solid var(--ink); padding:8px 10px 7px; text-align:right; white-space:nowrap; font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:13px;}
+thead th .sub{display:block; font-weight:400; font-size:11.5px; color:var(--mut); margin-top:1px;}
+thead th:first-child{position:sticky; left:0; z-index:4; background:var(--card); text-align:left; min-width:215px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--mut); border-right:1px solid var(--line); border-top-left-radius:12px;}
 thead th:last-child{border-top-right-radius:12px;}
 tbody td{padding:6px 10px; text-align:right; white-space:nowrap; border-bottom:1px solid #F0EFE7;}
 tbody tr:last-child td{border-bottom:0;}
-td.name{position:sticky; left:0; z-index:2; background:var(--card); text-align:left; font-family:'IBM Plex Sans',sans-serif; font-weight:500; border-right:1px solid var(--line); min-width:200px;}
+td.name{position:sticky; left:0; z-index:2; background:var(--card); text-align:left; font-family:'IBM Plex Sans',sans-serif; font-weight:500; border-right:1px solid var(--line); min-width:215px;}
 td.name .tick{display:inline-block; width:8px; height:8px; border-radius:2px; margin-right:8px; vertical-align:1px;}
 td.name.sub{padding-left:26px; color:var(--mut); font-weight:400;}
+/* 4A / 4B / 4C: жирные значения + подсветка канала */
+tr.ch-a td{background:#EBF2EF; font-weight:600;}
+tr.ch-b td{background:#F7F0E3; font-weight:600;}
+tr.ch-c td{background:#EDF0F6; font-weight:600;}
+tr.ch-a td.name, tr.ch-b td.name, tr.ch-c td.name{color:var(--ink); font-weight:600;}
 tr.sec td{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:0; height:30px;}
-tr.sec .sec-label{position:sticky; left:0; display:inline-flex; align-items:center; gap:8px; padding:6px 10px; font-family:'IBM Plex Sans',sans-serif; font-size:11px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; color:var(--spruce);}
+tr.sec .sec-label{position:sticky; left:0; display:inline-flex; align-items:center; gap:8px; padding:6px 10px; font-family:'IBM Plex Sans',sans-serif; font-size:12px; letter-spacing:.18em; text-transform:uppercase; font-weight:600; color:var(--spruce);}
 tr.sec .sec-label::before{content:""; width:14px; height:2px; background:var(--spruce); border-radius:1px;}
 tbody tr:hover td{background:#F5F8F4;}
 tbody tr:hover td.name{background:#F0F4EF;}
@@ -96,22 +101,31 @@ tbody tr.sec:hover td{background:var(--paper);}
 td.z{color:#B9BDB4;}
 th.cur,td.cur{background:var(--cur) !important;}
 thead th.cur{box-shadow:inset 0 3px 0 var(--cur-line);}
-thead th.cur .now{display:inline-block; font-size:9px; letter-spacing:.1em; color:#8A6A17; border:1px solid var(--cur-line); border-radius:4px; padding:0 4px; margin-left:6px; vertical-align:1px;}
+thead th.cur .now{display:inline-block; font-size:9.5px; letter-spacing:.1em; color:#8A6A17; border:1px solid var(--cur-line); border-radius:4px; padding:0 4px; margin-left:6px; vertical-align:1px;}
+td.hastip{cursor:help; text-decoration:underline dotted #ADB5AE; text-underline-offset:3px;}
+
+/* ---------- tooltip ---------- */
+#tip{position:fixed; z-index:60; max-width:360px; background:var(--card); border:1px solid var(--line); border-radius:10px;
+  box-shadow:0 8px 24px rgba(28,36,34,.16); padding:10px 12px; font-size:13px; line-height:1.55; display:none; pointer-events:none;}
+#tip .tt{font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--spruce); margin-bottom:6px;}
+#tip .tr{display:flex; justify-content:space-between; gap:16px;}
+#tip .tr span:last-child{font-family:'IBM Plex Mono',monospace; font-weight:600; white-space:nowrap;}
+#tip .tr.muted span{color:var(--mut);}
 
 /* ---------- footer ---------- */
-footer{padding:8px 24px 20px; font-size:11.5px; color:var(--mut); line-height:1.6;}
+footer{padding:8px 24px 20px; font-size:12.5px; color:var(--mut); line-height:1.6;}
 footer b{color:var(--ink); font-weight:600;}
 
 @media (max-width:720px){
   header{padding:16px 14px 10px;}
-  .brand h1{font-size:23px;}
+  .brand h1{font-size:24px;}
   .controls{padding:8px 14px;}
   .defs{padding:10px 14px 0;}
   #content{padding:2px 14px 22px;}
   footer{padding:6px 14px 14px;}
-  thead th:first-child, td.name{min-width:142px; max-width:142px; white-space:normal;}
+  thead th:first-child, td.name{min-width:152px; max-width:152px; white-space:normal;}
   .meta{display:none;}
-  .sec-title .full{font-size:14px;}
+  .sec-title .full{font-size:15px;}
 }
 @media (prefers-reduced-motion: reduce){
   *{transition:none !important; scroll-behavior:auto !important; animation:none !important;}
@@ -162,13 +176,14 @@ footer b{color:var(--ink); font-weight:600;}
     <p><b>BR</b> — booking ratio: Booked ÷ Potentials.</p>
     <p><b>ADP</b> — Revenue ÷ Potentials.</p>
     <p><b>Revenue</b> — total sale amount.</p>
-    <p><b>ADL</b> — Revenue ÷ Run jobs.</p>
+    <p><b>ADL</b> — Revenue ÷ Run jobs. Hover a value for the 4A / 4B / 4C and membership breakdown.</p>
     <p><b>AVT</b> — Revenue ÷ Sold jobs.</p>
     <p><b>Run</b> — 6-character job with an assigned technician.</p>
     <p><b>Sold job</b> — sale amount over $179.</p>
     <p><b>Cancellation %</b> — Canceled ÷ Potentials, both by appointment date.</p>
     <p><b>Run to Book</b> — Run (by appointment date) ÷ Booked (by lead date).</p>
     <p><b>SAL</b> — leads marked Lost (counted by lead date).</p>
+    <p><b>Reasons</b> — hover a Cancellation amount or SAL value to see the reason breakdown.</p>
     <p><b>Dates</b> — Marketing follows the lead creation date; Finances, Service Fulfillment and Sales follow the appointment date. Revenue always follows the appointment date.</p>
   </div>
 </div>
@@ -176,22 +191,25 @@ footer b{color:var(--ink); font-weight:600;}
 <div class="status" id="status"><div class="box center"><span class="spin"></span>Loading data from Google Sheets…</div></div>
 
 <div id="content"></div>
+<div id="tip" role="tooltip"></div>
 
 <footer>
   <b>Marketing</b> — by lead creation date · <b>Finances / Service Fulfillment / Sales</b> — by appointment date ·
-  <b>SAL</b> — by lead date (lost leads have no appointment) · States with no activity in the selected department are hidden ·
-  Data is pulled live from the published Google Sheet every time this page opens.
+  <b>SAL</b> — by lead date (lost leads have no appointment) · Hover the dotted-underlined numbers (Cancellation amount, SAL, ADL) for breakdowns ·
+  States with no activity in the selected department are hidden · Data is pulled live from the published Google Sheet every time this page opens.
 </footer>
 
 <script>
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQMCcP_2QsvXng-bpC1M9gQ1XcCHB4qcGxJ9bvi_Qd4dFYOVAiRbVapuoY1PUKACvacMmlXawad6KgJ/pub?gid=0&single=true&output=csv';
 
 /*CORE-START*/
-const FIELDS=['pot','p4a','p4b','p4c','bkd','b4a','b4b','b4c','lost','rev','run','sold','canc','potA'];
+const FIELDS=['pot','p4a','p4b','p4c','bkd','b4a','b4b','b4c','lost','rev','run','sold','canc','potA','r4a','r4b','r4c','n4a','n4b','n4c','rMem','nMem'];
 const CHMAP={'4A':['p4a','b4a'],'4B':['p4b','b4b'],'4C':['p4c','b4c']};
+const CHR={'4A':['r4a','n4a'],'4B':['r4b','n4b'],'4C':['r4c','n4c']};
 const STATES=new Set(['AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC','PR']);
 const ZIP3={"005":"NY","006":"PR","007":"PR","009":"PR","010":"MA","011":"MA","012":"MA","013":"MA","014":"MA","015":"MA","016":"MA","017":"MA","018":"MA","019":"MA","020":"MA","021":"MA","022":"MA","023":"MA","024":"MA","025":"MA","026":"MA","027":"MA","028":"RI","029":"RI","030":"NH","031":"NH","032":"NH","033":"NH","034":"NH","035":"NH","036":"NH","037":"NH","038":"NH","039":"ME","040":"ME","041":"ME","042":"ME","043":"ME","044":"ME","045":"ME","046":"ME","047":"ME","048":"ME","049":"ME","050":"VT","051":"VT","052":"VT","053":"VT","054":"VT","055":"MA","056":"VT","057":"VT","058":"VT","059":"VT","060":"CT","061":"CT","062":"CT","063":"CT","064":"CT","065":"CT","066":"CT","067":"CT","068":"CT","069":"CT","070":"NJ","071":"NJ","072":"NJ","073":"NJ","074":"NJ","075":"NJ","076":"NJ","077":"NJ","078":"NJ","079":"NJ","080":"NJ","081":"NJ","082":"NJ","083":"NJ","084":"NJ","085":"NJ","086":"NJ","087":"NJ","088":"NJ","089":"NJ","099":"NJ","100":"NY","101":"NY","102":"NY","103":"NY","104":"NY","105":"NY","106":"NY","107":"NY","108":"NY","109":"NY","110":"NY","111":"NY","112":"NY","113":"NY","114":"NY","115":"NY","116":"NY","117":"NY","118":"NY","119":"NY","120":"NY","121":"NY","122":"NY","123":"NY","124":"NY","125":"NY","126":"NY","127":"NY","128":"NY","129":"NY","130":"NY","131":"NY","132":"NY","133":"NY","134":"NY","135":"NY","136":"NY","137":"NY","138":"NY","139":"NY","140":"NY","141":"NY","142":"NY","143":"NY","144":"NY","145":"NY","146":"NY","147":"NY","148":"NY","149":"NY","150":"PA","151":"PA","152":"PA","153":"PA","154":"PA","155":"PA","156":"PA","157":"PA","158":"PA","159":"PA","160":"PA","161":"PA","162":"PA","163":"PA","164":"PA","165":"PA","166":"PA","167":"PA","168":"PA","169":"PA","170":"PA","171":"PA","172":"PA","173":"PA","174":"PA","175":"PA","176":"PA","177":"PA","178":"PA","179":"PA","180":"PA","181":"PA","182":"PA","183":"PA","184":"PA","185":"PA","186":"PA","187":"PA","188":"PA","189":"PA","190":"PA","191":"PA","192":"PA","193":"PA","194":"PA","195":"PA","196":"PA","197":"DE","198":"DE","199":"DE","200":"DC","201":"VA","202":"DC","203":"DC","204":"DC","205":"DC","206":"MD","207":"MD","208":"MD","209":"MD","210":"MD","211":"MD","212":"MD","214":"MD","215":"MD","216":"MD","217":"MD","218":"MD","219":"MD","220":"VA","221":"VA","222":"VA","223":"VA","224":"VA","225":"VA","226":"VA","227":"VA","228":"VA","229":"VA","230":"VA","231":"VA","232":"VA","233":"VA","234":"VA","235":"VA","236":"VA","237":"VA","238":"VA","239":"VA","240":"VA","241":"VA","242":"VA","243":"VA","244":"VA","245":"VA","246":"VA","247":"WV","248":"WV","249":"WV","250":"WV","251":"WV","252":"WV","253":"WV","254":"WV","255":"WV","256":"WV","257":"WV","258":"WV","259":"WV","260":"WV","261":"WV","262":"WV","263":"WV","264":"WV","265":"WV","266":"WV","267":"WV","268":"WV","270":"NC","271":"NC","272":"NC","273":"NC","274":"NC","275":"NC","276":"NC","277":"NC","278":"NC","279":"NC","280":"NC","281":"NC","282":"NC","283":"NC","284":"NC","285":"NC","286":"NC","287":"NC","288":"NC","289":"NC","290":"SC","291":"SC","292":"SC","293":"SC","294":"SC","295":"SC","296":"SC","297":"SC","298":"SC","299":"SC","300":"GA","301":"GA","302":"GA","303":"GA","304":"GA","305":"GA","306":"GA","307":"GA","308":"GA","309":"GA","310":"GA","311":"GA","312":"GA","313":"GA","314":"GA","315":"GA","316":"GA","317":"GA","318":"GA","319":"GA","320":"FL","321":"FL","322":"FL","323":"FL","324":"FL","325":"FL","326":"FL","327":"FL","328":"FL","329":"FL","330":"FL","331":"FL","332":"FL","333":"FL","334":"FL","335":"FL","336":"FL","337":"FL","338":"FL","339":"FL","341":"FL","342":"FL","344":"FL","346":"FL","347":"FL","349":"FL","350":"AL","351":"AL","352":"AL","354":"AL","355":"AL","356":"AL","357":"AL","358":"AL","359":"AL","360":"AL","361":"AL","362":"AL","363":"AL","364":"AL","365":"AL","366":"AL","367":"AL","368":"AL","369":"AL","370":"TN","371":"TN","372":"TN","373":"TN","374":"TN","375":"TN","376":"TN","377":"TN","378":"TN","379":"TN","380":"TN","381":"TN","382":"TN","383":"TN","384":"TN","385":"TN","386":"MS","387":"MS","388":"MS","389":"MS","390":"MS","391":"MS","392":"MS","393":"MS","394":"MS","395":"MS","396":"MS","397":"MS","398":"GA","399":"GA","400":"KY","401":"KY","402":"KY","403":"KY","404":"KY","405":"KY","406":"KY","407":"KY","408":"KY","409":"KY","410":"KY","411":"KY","412":"KY","413":"KY","414":"KY","415":"KY","416":"KY","417":"KY","418":"KY","420":"KY","421":"KY","422":"KY","423":"KY","424":"KY","425":"KY","426":"KY","427":"KY","430":"OH","431":"OH","432":"OH","433":"OH","434":"OH","435":"OH","436":"OH","437":"OH","438":"OH","439":"OH","440":"OH","441":"OH","442":"OH","443":"OH","444":"OH","445":"OH","446":"OH","447":"OH","448":"OH","449":"OH","450":"OH","451":"OH","452":"OH","453":"OH","454":"OH","455":"OH","456":"OH","457":"OH","458":"OH","459":"OH","460":"IN","461":"IN","462":"IN","463":"IN","464":"IN","465":"IN","466":"IN","467":"IN","468":"IN","469":"IN","470":"IN","471":"IN","472":"IN","473":"IN","474":"IN","475":"IN","476":"IN","477":"IN","478":"IN","479":"IN","480":"MI","481":"MI","482":"MI","483":"MI","484":"MI","485":"MI","486":"MI","487":"MI","488":"MI","489":"MI","490":"MI","491":"MI","492":"MI","493":"MI","494":"MI","495":"MI","496":"MI","497":"MI","498":"MI","499":"MI","500":"IA","501":"IA","502":"IA","503":"IA","504":"IA","505":"IA","506":"IA","507":"IA","508":"IA","509":"IA","510":"IA","511":"IA","512":"IA","513":"IA","514":"IA","515":"IA","516":"IA","520":"IA","521":"IA","522":"IA","523":"IA","524":"IA","525":"IA","526":"IA","527":"IA","528":"IA","530":"WI","531":"WI","532":"WI","534":"WI","535":"WI","537":"WI","538":"WI","539":"WI","540":"WI","541":"WI","542":"WI","543":"WI","544":"WI","545":"WI","546":"WI","547":"WI","548":"WI","549":"WI","550":"MN","551":"MN","553":"MN","554":"MN","555":"MN","556":"MN","557":"MN","558":"MN","559":"MN","560":"MN","561":"MN","562":"MN","563":"MN","564":"MN","565":"MN","566":"MN","567":"MN","569":"DC","570":"SD","571":"SD","572":"SD","573":"SD","574":"SD","575":"SD","576":"SD","577":"SD","580":"ND","581":"ND","582":"ND","583":"ND","584":"ND","585":"ND","586":"ND","587":"ND","588":"ND","590":"MT","591":"MT","592":"MT","593":"MT","594":"MT","595":"MT","596":"MT","597":"MT","598":"MT","599":"MT","600":"IL","601":"IL","602":"IL","603":"IL","604":"IL","605":"IL","606":"IL","607":"IL","608":"IL","609":"IL","610":"IL","611":"IL","612":"IL","613":"IL","614":"IL","615":"IL","616":"IL","617":"IL","618":"IL","619":"IL","620":"IL","622":"IL","623":"IL","624":"IL","625":"IL","626":"IL","627":"IL","628":"IL","629":"IL","630":"MO","631":"MO","633":"MO","634":"MO","635":"MO","636":"MO","637":"MO","638":"MO","639":"MO","640":"MO","641":"MO","644":"MO","645":"MO","646":"MO","647":"MO","648":"MO","649":"MO","650":"MO","651":"MO","652":"MO","653":"MO","654":"MO","655":"MO","656":"MO","657":"MO","658":"MO","660":"KS","661":"KS","662":"KS","664":"KS","665":"KS","666":"KS","667":"KS","668":"KS","669":"KS","670":"KS","671":"KS","672":"KS","673":"KS","674":"KS","675":"KS","676":"KS","677":"KS","678":"KS","679":"KS","680":"NE","681":"NE","683":"NE","684":"NE","685":"NE","686":"NE","687":"NE","688":"NE","689":"NE","690":"NE","691":"NE","692":"NE","693":"NE","700":"LA","701":"LA","703":"LA","704":"LA","705":"LA","706":"LA","707":"LA","708":"LA","710":"LA","711":"LA","712":"LA","713":"LA","714":"LA","716":"AR","717":"AR","718":"AR","719":"AR","720":"AR","721":"AR","722":"AR","723":"AR","724":"AR","725":"AR","726":"AR","727":"AR","728":"AR","729":"AR","730":"OK","731":"OK","733":"TX","734":"OK","735":"OK","736":"OK","737":"OK","738":"OK","739":"OK","740":"OK","741":"OK","743":"OK","744":"OK","745":"OK","746":"OK","747":"OK","748":"OK","749":"OK","750":"TX","751":"TX","752":"TX","753":"TX","754":"TX","755":"TX","756":"TX","757":"TX","758":"TX","759":"TX","760":"TX","761":"TX","762":"TX","763":"TX","764":"TX","765":"TX","766":"TX","767":"TX","768":"TX","769":"TX","770":"TX","772":"TX","773":"TX","774":"TX","775":"TX","776":"TX","777":"TX","778":"TX","779":"TX","780":"TX","781":"TX","782":"TX","783":"TX","784":"TX","785":"TX","786":"TX","787":"TX","788":"TX","789":"TX","790":"TX","791":"TX","792":"TX","793":"TX","794":"TX","795":"TX","796":"TX","797":"TX","798":"TX","799":"TX","800":"CO","801":"CO","802":"CO","803":"CO","804":"CO","805":"CO","806":"CO","807":"CO","808":"CO","809":"CO","810":"CO","811":"CO","812":"CO","813":"CO","814":"CO","815":"CO","816":"CO","820":"WY","821":"WY","822":"WY","823":"WY","824":"WY","825":"WY","826":"WY","827":"WY","828":"WY","829":"WY","830":"WY","831":"WY","832":"ID","833":"ID","834":"ID","835":"ID","836":"ID","837":"ID","838":"ID","840":"UT","841":"UT","842":"UT","843":"UT","844":"UT","845":"UT","846":"UT","847":"UT","850":"AZ","851":"AZ","852":"AZ","853":"AZ","855":"AZ","856":"AZ","857":"AZ","859":"AZ","860":"AZ","863":"AZ","864":"AZ","865":"AZ","870":"NM","871":"NM","873":"NM","874":"NM","875":"NM","876":"NM","877":"NM","878":"NM","879":"NM","880":"NM","881":"NM","882":"NM","883":"NM","884":"NM","885":"TX","888":"DC","889":"NV","890":"NV","891":"NV","893":"NV","894":"NV","895":"NV","897":"NV","898":"NV","900":"CA","901":"CA","902":"CA","903":"CA","904":"CA","905":"CA","906":"CA","907":"CA","908":"CA","910":"CA","911":"CA","912":"CA","913":"CA","914":"CA","915":"CA","916":"CA","917":"CA","918":"CA","919":"CA","920":"CA","921":"CA","922":"CA","923":"CA","924":"CA","925":"CA","926":"CA","927":"CA","928":"CA","930":"CA","931":"CA","932":"CA","933":"CA","934":"CA","935":"CA","936":"CA","937":"CA","938":"CA","939":"CA","940":"CA","941":"CA","942":"CA","943":"CA","944":"CA","945":"CA","946":"CA","947":"CA","948":"CA","949":"CA","950":"CA","951":"CA","952":"CA","953":"CA","954":"CA","955":"CA","956":"CA","957":"CA","958":"CA","959":"CA","960":"CA","961":"CA","967":"HI","968":"HI","970":"OR","971":"OR","972":"OR","973":"OR","974":"OR","975":"OR","976":"OR","977":"OR","978":"OR","979":"OR","980":"WA","981":"WA","982":"WA","983":"WA","984":"WA","985":"WA","986":"WA","988":"WA","989":"WA","990":"WA","991":"WA","992":"WA","993":"WA","994":"WA","995":"AK","996":"AK","997":"AK","998":"AK","999":"AK"};
 const REQ=['job_created','appointment_date','job_reference','lead_status','department','job_region','sale_amount','lead_source','customer_zip','customer_state','assigned_tech','4abc'];
+const OPT=['lose_reason','customer_membership_status'];
 
 function parseCSV(text){
   const rows=[]; let row=[], cur='', q=false;
@@ -217,9 +235,9 @@ function parseDate(s){
   const sp=s.indexOf(' '); if(sp>0) s=s.slice(0,sp);
   let m=s.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
   if(m) return new Date(Date.UTC(+m[1], +m[2]-1, +m[3]));
-  m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);           /* M/D/YYYY (US) */
+  m=s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
   if(m){ let y=+m[3]; if(y<100)y+=2000; return new Date(Date.UTC(y, +m[1]-1, +m[2])); }
-  m=s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);           /* D.M.YYYY */
+  m=s.match(/^(\d{1,2})\.(\d{1,2})\.(\d{2,4})$/);
   if(m){ let y=+m[3]; if(y<100)y+=2000; return new Date(Date.UTC(y, +m[2]-1, +m[1])); }
   return null;
 }
@@ -280,12 +298,12 @@ function stateOf(p,v,z){
       if(STATES.has(c) && (s.length===2 || !/[A-Za-z]/.test(s[2]))) return c; } }
   if(v){ const c=String(v).trim().toUpperCase();
     if(c.length===2 && STATES.has(c)) return c;
-    if(/^[A-Z]{2,}$/.test(c)) return 'Unknown'; }              /* иностранный код региона: ON, IDF, ... */
+    if(/^[A-Z]{2,}$/.test(c)) return 'Unknown'; }
   if(z){ const zs=String(z).trim();
     let d=null;
-    const m5=zs.match(/(\d{5})/);                             /* ищем 5 цифр подряд: 'OR 97452' -> 97452 */
+    const m5=zs.match(/(\d{5})/);
     if(m5) d=m5[1];
-    else if(/^\d{3,4}$/.test(zs)) d=zs.padStart(5,'0');       /* зип с потерянным ведущим нулём: 7940 */
+    else if(/^\d{3,4}$/.test(zs)) d=zs.padStart(5,'0');
     if(d){ const st=ZIP3[d.slice(0,3)]; if(st) return st; } }
   return 'Unknown';
 }
@@ -309,11 +327,30 @@ function aggregateRows(rows,P){
   const ix={}, missing=[];
   for(const n of REQ){ const i=H.indexOf(n); if(i<0) missing.push(n); ix[n]=i; }
   if(missing.length) throw new Error('MISSING:'+missing.join(', '));
+  for(const n of OPT){ ix[n]=H.indexOf(n); }
+  const hasReason=ix['lose_reason']>=0;
+  const hasMem=ix['customer_membership_status']>=0;
   const nW=P.w.periods.length, nM=P.m.periods.length;
   const out={reg:{w:{},m:{}}, he:{w:{},m:{}}};
-  const ensure=(D,ax,st)=>{ if(!D[ax][st]){ const f={}; for(const k of FIELDS) f[k]=new Array(ax==='w'?nW:nM).fill(0); D[ax][st]=f; } };
+  const ensure=(D,ax,st)=>{
+    if(!D[ax][st]){
+      const n=ax==='w'?nW:nM;
+      const f={};
+      for(const k of FIELDS) f[k]=new Array(n).fill(0);
+      f.cancR=new Array(n).fill(null);
+      f.lostR=new Array(n).fill(null);
+      D[ax][st]=f;
+    }
+  };
   for(const dk of ['reg','he']){ ensure(out[dk],'w','ALL'); ensure(out[dk],'m','ALL'); }
   const add=(D,ax,st,i,f,v)=>{ D[ax][st][f][i]+=v; D[ax].ALL[f][i]+=v; };
+  const addReason=(D,ax,st,i,key,reason)=>{
+    for(const s of [st,'ALL']){
+      const arr=D[ax][s][key];
+      const o=arr[i]||(arr[i]={});
+      o[reason]=(o[reason]||0)+1;
+    }
+  };
   const potOrd={}, seen=new Set();
   for(let r=1; r<rows.length; r++){
     const row=rows[r];
@@ -335,8 +372,10 @@ function aggregateRows(rows,P){
     const runF=is6&&tech;
     const rev=parseMoney(g('sale_amount'));
     const soldF=rev>179;
+    const reason=hasReason ? (String(g('lose_reason')).trim() || 'Not specified') : '';
+    const mem=hasMem && String(g('customer_membership_status')).trim().toLowerCase()==='active';
     let dc=parseDate(g('job_created')), da=parseDate(g('appointment_date'));
-    if(dc && dc.getUTCMonth()===0 && dc.getUTCDate()===1) dc=null;   /* Jan 1 never counted */
+    if(dc && dc.getUTCMonth()===0 && dc.getUTCDate()===1) dc=null;
     if(da && da.getUTCMonth()===0 && da.getUTCDate()===1) da=null;
     seen.add(st);
     ensure(D,'w',st); ensure(D,'m',st);
@@ -347,7 +386,7 @@ function aggregateRows(rows,P){
         add(D,ax,st,i,'pot',1);
         if(booked) add(D,ax,st,i,'bkd',1);
         if(ch in CHMAP){ add(D,ax,st,i,CHMAP[ch][0],1); if(booked) add(D,ax,st,i,CHMAP[ch][1],1); }
-        if(lostF) add(D,ax,st,i,'lost',1);
+        if(lostF){ add(D,ax,st,i,'lost',1); if(hasReason) addReason(D,ax,st,i,'lostR',reason); }
       }
     }
     for(const [ax,i] of [['w',wkeyIdx(da,P)],['m',mkeyIdx(da,P)]]){
@@ -355,14 +394,16 @@ function aggregateRows(rows,P){
       add(D,ax,st,i,'rev',rev);
       if(runF) add(D,ax,st,i,'run',1);
       if(soldF) add(D,ax,st,i,'sold',1);
-      if(cancF) add(D,ax,st,i,'canc',1);
+      if(cancF){ add(D,ax,st,i,'canc',1); if(hasReason) addReason(D,ax,st,i,'cancR',reason); }
       if(is6) add(D,ax,st,i,'potA',1);
+      if(ch in CHR){ add(D,ax,st,i,CHR[ch][0],rev); if(runF) add(D,ax,st,i,CHR[ch][1],1); }
+      if(mem){ add(D,ax,st,i,'rMem',rev); if(runF) add(D,ax,st,i,'nMem',1); }
     }
   }
   const others=[...seen].filter(s=>s!=='Unknown').sort((a,b)=>(potOrd[b]||0)-(potOrd[a]||0));
   const states=['ALL', ...others];
   if(seen.has('Unknown')) states.push('Unknown');
-  return {depts:out, states};
+  return {depts:out, states, hasReason, hasMem};
 }
 /*CORE-END*/
 
@@ -372,30 +413,30 @@ const SCOPES = {reg:'Appliance Repair — Regular', he:'Appliance Repair — Hig
 const SECTIONS = [
   {name:'Marketing', rows:[
     {t:'Potentials', f:'pot', kind:'int'},
-    {t:'4A', f:'p4a', kind:'int', sub:1, tick:'var(--spruce)'},
-    {t:'4B', f:'p4b', kind:'int', sub:1, tick:'var(--ochre)'},
-    {t:'4C', f:'p4c', kind:'int', sub:1, tick:'var(--slate)'},
+    {t:'4A', f:'p4a', kind:'int', sub:1, ch:'a', tick:'var(--spruce)'},
+    {t:'4B', f:'p4b', kind:'int', sub:1, ch:'b', tick:'var(--ochre)'},
+    {t:'4C', f:'p4c', kind:'int', sub:1, ch:'c', tick:'var(--slate)'},
     {t:'Booked', f:'bkd', kind:'int'},
-    {t:'4A', f:'b4a', kind:'int', sub:1, tick:'var(--spruce)'},
-    {t:'4B', f:'b4b', kind:'int', sub:1, tick:'var(--ochre)'},
-    {t:'4C', f:'b4c', kind:'int', sub:1, tick:'var(--slate)'},
+    {t:'4A', f:'b4a', kind:'int', sub:1, ch:'a', tick:'var(--spruce)'},
+    {t:'4B', f:'b4b', kind:'int', sub:1, ch:'b', tick:'var(--ochre)'},
+    {t:'4C', f:'b4c', kind:'int', sub:1, ch:'c', tick:'var(--slate)'},
     {t:'BR', num:'bkd', den:'pot', kind:'pct'},
-    {t:'BR 4A', num:'b4a', den:'p4a', kind:'pct', sub:1, tick:'var(--spruce)'},
-    {t:'BR 4B', num:'b4b', den:'p4b', kind:'pct', sub:1, tick:'var(--ochre)'},
-    {t:'BR 4C', num:'b4c', den:'p4c', kind:'pct', sub:1, tick:'var(--slate)'},
+    {t:'BR 4A', num:'b4a', den:'p4a', kind:'pct', sub:1, ch:'a', tick:'var(--spruce)'},
+    {t:'BR 4B', num:'b4b', den:'p4b', kind:'pct', sub:1, ch:'b', tick:'var(--ochre)'},
+    {t:'BR 4C', num:'b4c', den:'p4c', kind:'pct', sub:1, ch:'c', tick:'var(--slate)'},
     {t:'ADP', num:'rev', den:'pot', kind:'money'},
   ]},
   {name:'Finances', rows:[
     {t:'Revenue', f:'rev', kind:'money'},
-    {t:'ADL', num:'rev', den:'run', kind:'money'},
+    {t:'ADL', num:'rev', den:'run', kind:'money', tip:'adl'},
     {t:'AVT', num:'rev', den:'sold', kind:'money'},
   ]},
   {name:'Service Fulfillment', rows:[
-    {t:'Cancellation amount', f:'canc', kind:'int'},
+    {t:'Cancellation amount', f:'canc', kind:'int', tip:'canc'},
     {t:'Cancellation %', num:'canc', den:'potA', kind:'pct'},
     {t:'Appointments (Run)', f:'run', kind:'int'},
     {t:'Run to Book', num:'run', den:'bkd', kind:'pct'},
-    {t:'SAL', f:'lost', kind:'int'},
+    {t:'SAL', f:'lost', kind:'int', tip:'sal'},
   ]},
   {name:'Sales', rows:[
     {t:'Closing Ratio', num:'sold', den:'run', kind:'pct'},
@@ -408,6 +449,7 @@ let view='w', dept='reg', PERIODS=null, DATA=null;
 const $ = id => document.getElementById(id);
 const sum = a => a.reduce((x,y)=>x+y,0);
 const fmtInt = n => n.toLocaleString('en-US');
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
 
 function fmt(v, kind){
   if (v===null || v===undefined || Number.isNaN(v)) return '–';
@@ -422,7 +464,14 @@ function cellVal(d,row,i){
   if(!den) return {v:null, zero:true};
   return {v:d[row.num][i]/den, zero:false};
 }
-function tableHTML(d,P,cur){
+function tipAttach(d,row,i){
+  if(!row.tip) return false;
+  if(row.tip==='canc') return DATA.hasReason && d.canc[i]>0;
+  if(row.tip==='sal')  return DATA.hasReason && d.lost[i]>0;
+  if(row.tip==='adl')  return d.run[i]>0;
+  return false;
+}
+function tableHTML(st,d,P,cur){
   const nCols=P.periods.length+1;
   let h='<colgroup>'+'<col>'.repeat(nCols)+'</colgroup>';
   h+='<thead><tr><th>Metric</th>';
@@ -436,11 +485,13 @@ function tableHTML(d,P,cur){
     h+=`<tr class="sec"><td colspan="${nCols}"><span class="sec-label">${sec.name}</span></td></tr>`;
     for(const row of sec.rows){
       const tick=row.tick?`<span class="tick" style="background:${row.tick}"></span>`:'';
-      h+=`<tr><td class="name${row.sub?' sub':''}">${tick}${row.t}</td>`;
+      h+=`<tr${row.ch?` class="ch-${row.ch}"`:''}><td class="name${row.sub?' sub':''}">${tick}${row.t}</td>`;
       P.periods.forEach((p,i)=>{
         const {v,zero}=cellVal(d,row,i);
-        const cls=[(p.k===cur?'cur':''),(zero?'z':'')].filter(Boolean).join(' ');
-        h+=`<td${cls?` class="${cls}"`:''}>${fmt(v,row.kind)}</td>`;
+        const withTip=tipAttach(d,row,i);
+        const cls=[(p.k===cur?'cur':''),(zero?'z':''),(withTip?'hastip':'')].filter(Boolean).join(' ');
+        const attrs=withTip?` data-tip="${row.tip}" data-i="${i}"`:'';
+        h+=`<td${cls?` class="${cls}"`:''}${attrs}>${fmt(v,row.kind)}</td>`;
       });
       h+='</tr>';
     }
@@ -462,11 +513,12 @@ function sectionHTML(st,d,P,cur){
         <span><b>${fmtInt(ts)}</b> sold</span>
       </div>
     </div>
-    <div class="twrap"><table aria-label="${full} report">${tableHTML(d,P,cur)}</table></div>
+    <div class="twrap"><table data-st="${st}" aria-label="${full} report">${tableHTML(st,d,P,cur)}</table></div>
   </section>`;
 }
 function render(){
   if(!DATA||!PERIODS) return;
+  hideTip();
   const P=PERIODS[view];
   const dd=DATA.depts[dept][view];
   const rendered=[]; let out='';
@@ -483,6 +535,50 @@ function render(){
   document.querySelectorAll('.twrap').forEach(w=>{ w.scrollLeft=w.scrollWidth; });
   $('scope').textContent=SCOPES[dept];
 }
+
+/* ---- tooltip ---- */
+const tip=$('tip'); let tipCell=null;
+function hideTip(){ tipCell=null; tip.style.display='none'; }
+function tipContent(kind,st,i){
+  const P=PERIODS[view];
+  const d=DATA.depts[dept][view][st];
+  const where=(st==='ALL'?'All states':st)+' · '+P.periods[i].l;
+  if(kind==='adl'){
+    const line=(lbl,r,n,muted)=>`<div class="tr${muted?' muted':''}"><span>${lbl}</span><span>${n?('$'+fmtInt(Math.round(r/n))+' · '+fmtInt(n)+' run'):'–'}</span></div>`;
+    let h=`<div class="tt">ADL breakdown · ${where}</div>`;
+    h+=line('Overall',d.rev[i],d.run[i],true);
+    h+=line('4A',d.r4a[i],d.n4a[i]);
+    h+=line('4B',d.r4b[i],d.n4b[i]);
+    h+=line('4C',d.r4c[i],d.n4c[i]);
+    if(DATA.hasMem) h+=line('Membership',d.rMem[i],d.nMem[i]);
+    return h;
+  }
+  const key=kind==='canc'?'cancR':'lostR';
+  const total=kind==='canc'?d.canc[i]:d.lost[i];
+  const obj=d[key][i]||{};
+  let h=`<div class="tt">${kind==='canc'?'Cancellation reasons':'Lost reasons'} · ${where}</div>`;
+  const es=Object.entries(obj).sort((a,b)=>b[1]-a[1]);
+  const top=es.slice(0,6), restN=es.slice(6).reduce((s,e)=>s+e[1],0);
+  for(const [r,n] of top) h+=`<div class="tr"><span>${esc(r)}</span><span>${(n/total*100).toFixed(1)}% · ${n}</span></div>`;
+  if(restN) h+=`<div class="tr muted"><span>Other reasons</span><span>${(restN/total*100).toFixed(1)}% · ${restN}</span></div>`;
+  return h;
+}
+$('content').addEventListener('mouseover',e=>{
+  const c=e.target.closest('td.hastip');
+  if(!c){ hideTip(); return; }
+  if(c===tipCell) return;
+  tipCell=c;
+  const st=c.closest('table').dataset.st;
+  tip.innerHTML=tipContent(c.dataset.tip, st, +c.dataset.i);
+  tip.style.display='block'; tip.style.visibility='hidden';
+  const r=c.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
+  let top=r.top-th-8; if(top<8) top=r.bottom+8;
+  const left=Math.min(Math.max(8, r.left+r.width/2-tw/2), window.innerWidth-tw-8);
+  tip.style.top=top+'px'; tip.style.left=left+'px'; tip.style.visibility='visible';
+});
+$('content').addEventListener('mouseleave',hideTip);
+$('content').addEventListener('scroll',hideTip,true);
+window.addEventListener('scroll',hideTip,{passive:true});
 
 /* ---- data loading ---- */
 function showStatus(mode,err){
