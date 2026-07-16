@@ -176,7 +176,7 @@ footer b{color:var(--ink); font-weight:600;}
     <p><b>AVT</b> — Revenue ÷ Sold jobs. Hover a value for the 4A / 4B / 4C and membership breakdown.</p>
     <p><b>Run</b> — 6-character job with an assigned technician.</p>
     <p><b>Sold job</b> — sale amount over $179.</p>
-    <p><b>Cancellation %</b> — Canceled ÷ Potentials, both by appointment date.</p>
+    <p><b>Cancellation %</b> — Cancellation amount (by appointment date) ÷ Potentials (by lead date).</p>
     <p><b>Run to Book</b> — Run (by appointment date) ÷ Booked (by lead date).</p>
     <p><b>SAL</b> — leads marked Lost (counted by lead date).</p>
     <p><b>Reasons</b> — hover a Cancellation amount or SAL value to see the reason breakdown.</p>
@@ -430,7 +430,7 @@ const SECTIONS = [
   ]},
   {name:'Service Fulfillment', rows:[
     {t:'Cancellation amount', f:'canc', kind:'int', tip:'canc'},
-    {t:'Cancellation %', num:'canc', den:'potA', kind:'pct'},
+    {t:'Cancellation %', num:'canc', den:'pot', kind:'pct'},
     {t:'Appointments (Run)', f:'run', kind:'int'},
     {t:'Run to Book', num:'run', den:'bkd', kind:'pct'},
     {t:'SAL', f:'lost', kind:'int', tip:'sal'},
