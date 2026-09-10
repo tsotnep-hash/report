@@ -99,6 +99,11 @@ th.cur,td.cur{background:var(--cur) !important;}
 thead th.cur{box-shadow:inset 0 3px 0 var(--cur-line);}
 thead th.cur .now{display:inline-block; font-size:10px; letter-spacing:.1em; color:#8A6A17; border:1px solid var(--cur-line); border-radius:4px; padding:0 4px; margin-left:6px; vertical-align:1px;}
 td.hastip{cursor:help; text-decoration:underline dotted #ADB5AE; text-underline-offset:3px;}
+th.agg,td.agg{background:#EFEEE5;}
+th.agg{border-left:1.5px solid var(--ink);}
+td.agg{border-left:1.5px solid var(--ink);}
+tr.tgrp td{border-top:1px solid #D9D7CB;}
+td.name .mini{color:var(--mut); font-weight:400; font-size:13px;}
 
 /* ---------- tooltip ---------- */
 #tip{position:fixed; z-index:60; max-width:380px; background:var(--card); border:1px solid var(--line); border-radius:10px;
@@ -147,6 +152,7 @@ footer b{color:var(--ink); font-weight:600;}
     <div class="seg" role="tablist" aria-label="Period view">
       <button id="btn-w" class="on" role="tab" aria-selected="true">Weekly</button>
       <button id="btn-m" role="tab" aria-selected="false">Monthly</button>
+      <button id="btn-t" role="tab" aria-selected="false">Technicians</button>
     </div>
   </div>
   <div class="grp">
@@ -180,6 +186,8 @@ footer b{color:var(--ink); font-weight:600;}
     <p><b>Run to Book</b> — Run (by appointment date) ÷ Booked (by lead date).</p>
     <p><b>SAL</b> — leads marked Lost (counted by lead date).</p>
     <p><b>Reasons</b> — hover a Cancellation amount or SAL value to see the reason breakdown.</p>
+    <p><b>Technicians</b> — per-state technician view: the last 5 full weeks (current week excluded) plus the last 90 days, by appointment date. Technicians with no run jobs in those 5 weeks are hidden.</p>
+    <p><b>Technician ADL / CR / AVT</b> — computed within the technician's own run jobs (6-character jobs assigned to them; PI and REDO excluded): ADL = revenue ÷ run, CR = sold ÷ run, AVT = revenue ÷ sold. Hover an ADL value for run / sold / revenue counts.</p>
     <p><b>Dates</b> — Marketing follows the lead creation date; Finances, Service Fulfillment and Sales follow the appointment date. Revenue always follows the appointment date.</p>
   </div>
 </div>
@@ -275,7 +283,20 @@ function buildPeriods(now){
   const MN=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const mp=[], midx={};
   for(let m=1; m<=lastM; m++){ const k='M'+pad2(m); midx[k]=m-1; mp.push({k, l:MN[m-1], s:String(Y)}); }
-  return {Y, w:{periods:wp, cur:'W'+pad2(lastW), idx:widx}, m:{periods:mp, cur:'M'+pad2(lastM), idx:midx}};
+  const isoT=isoWeek(today);
+  const curMon=isoWeekStart(isoT.year, isoT.week);
+  const tw=[], tkeys=[];
+  for(let j=5; j>=1; j--){
+    const mon=new Date(curMon); mon.setUTCDate(curMon.getUTCDate()-7*j);
+    const sun=new Date(mon); sun.setUTCDate(mon.getUTCDate()+6);
+    const iw=isoWeek(mon);
+    const key=iw.year+'-W'+pad2(iw.week);
+    tkeys.push(key);
+    tw.push({k:key, l:'W'+iw.week, s:pad2(mon.getUTCDate())+'.'+pad2(mon.getUTCMonth()+1)+'–'+pad2(sun.getUTCDate())+'.'+pad2(sun.getUTCMonth()+1)});
+  }
+  const from90=new Date(today); from90.setUTCDate(from90.getUTCDate()-89);
+  tw.push({k:'D90', l:'90 days', s:pad2(from90.getUTCDate())+'.'+pad2(from90.getUTCMonth()+1)+'–'+pad2(today.getUTCDate())+'.'+pad2(today.getUTCMonth()+1)});
+  return {Y, w:{periods:wp, cur:'W'+pad2(lastW), idx:widx}, m:{periods:mp, cur:'M'+pad2(lastM), idx:midx}, t:{periods:tw, keys:tkeys, from:+from90, to:+today}};
 }
 
 function parseMoney(s){
@@ -329,6 +350,7 @@ function aggregateRows(rows,P){
   const hasMem=ix['customer_membership_status']>=0;
   const nW=P.w.periods.length, nM=P.m.periods.length;
   const out={reg:{w:{},m:{}}, he:{w:{},m:{}}};
+  const techs={reg:{},he:{}};
   const ensure=(D,ax,st)=>{
     if(!D[ax][st]){
       const n=ax==='w'?nW:nM;
@@ -365,7 +387,8 @@ function aggregateRows(rows,P){
     const booked=ls!=='Lost', lostF=ls==='Lost', cancF=ls==='Canceled';
     const ch=channelOf(g('lead_source'), g('4abc'));
     const st=stateOf(g('job_region'), g('customer_state'), g('customer_zip'));
-    const tech=String(g('assigned_tech')).trim()!=='';
+    const tn=String(g('assigned_tech')).trim();
+    const tech=tn!=='';
     const runF=is6&&tech;
     const rev=parseMoney(g('sale_amount'));
     const soldF=rev>179;
@@ -396,11 +419,23 @@ function aggregateRows(rows,P){
       if(ch in CHR){ add(D,ax,st,i,CHR[ch][0],rev); if(runF) add(D,ax,st,i,CHR[ch][1],1); if(soldF) add(D,ax,st,i,CHS[ch],1); }
       if(mem){ add(D,ax,st,i,'rMem',rev); if(runF) add(D,ax,st,i,'nMem',1); if(soldF) add(D,ax,st,i,'sMem',1); }
     }
+    if(tn && is6 && da){
+      const iw=isoWeek(da);
+      const j=P.t.keys.indexOf(iw.year+'-W'+pad2(iw.week));
+      const in90=(+da>=P.t.from && +da<=P.t.to);
+      if(j>=0 || in90){
+        const TS=techs[dk][st]||(techs[dk][st]={});
+        const tt=TS[tn]||(TS[tn]={run:[0,0,0,0,0,0],sold:[0,0,0,0,0,0],rev:[0,0,0,0,0,0]});
+        const put=x=>{ tt.run[x]++; tt.rev[x]+=rev; if(soldF) tt.sold[x]++; };
+        if(j>=0) put(j);
+        if(in90) put(5);
+      }
+    }
   }
   const others=[...seen].filter(s=>s!=='Unknown').sort((a,b)=>(potOrd[b]||0)-(potOrd[a]||0));
   const states=['ALL', ...others];
   if(seen.has('Unknown')) states.push('Unknown');
-  return {depts:out, states, hasReason, hasMem};
+  return {depts:out, states, hasReason, hasMem, tech:techs};
 }
 /*CORE-END*/
 
@@ -441,7 +476,7 @@ const SECTIONS = [
   ]},
 ];
 
-let view='w', dept='reg', PERIODS=null, DATA=null;
+let view='w', dept='reg', PERIODS=null, DATA=null, RENDT={};
 
 const $ = id => document.getElementById(id);
 const sum = a => a.reduce((x,y)=>x+y,0);
@@ -503,18 +538,71 @@ function sectionHTML(st,d,P,cur){
     <table data-st="${st}" aria-label="${full} report">${tableHTML(st,d,P,cur)}</table>
   </section>`;
 }
+function techTableHTML(st,list,P){
+  const nCols=P.periods.length+1;
+  const full=STATE_NAMES[st]||st;
+  let h='<colgroup>'+'<col>'.repeat(nCols)+'</colgroup>';
+  h+=`<thead><tr><th><div class="stt"><span class="code">${st}</span><span class="full">${esc(full)}</span></div></th>`;
+  P.periods.forEach((p,i)=>{
+    h+=`<th${i===P.periods.length-1?' class="agg"':''}>${p.l}<span class="sub">${p.s}</span></th>`;
+  });
+  h+='</tr></thead><tbody>';
+  list.forEach((x,ti)=>{
+    const t=x.t;
+    const cell=(i,v,kind,tipOK)=>{
+      const zero=(v===null);
+      const cls=[(i===5?'agg':''),(zero?'z':''),(tipOK?'hastip':'')].filter(Boolean).join(' ');
+      const attrs=tipOK?` data-tip="tech" data-i="${i}" data-ti="${ti}"`:'';
+      return `<td${cls?` class="${cls}"`:''}${attrs}>${zero?'–':fmt(v,kind)}</td>`;
+    };
+    h+=`<tr class="tgrp"><td class="name">${esc(x.n)}<span class="mini"> · ADL</span></td>`;
+    for(let i=0;i<6;i++) h+=cell(i, t.run[i]?t.rev[i]/t.run[i]:null, 'money', t.run[i]>0);
+    h+='</tr>';
+    h+=`<tr class="chnl"><td class="name sub">CR</td>`;
+    for(let i=0;i<6;i++) h+=cell(i, t.run[i]?t.sold[i]/t.run[i]:null, 'pct', false);
+    h+='</tr>';
+    h+=`<tr class="chnl"><td class="name sub">AVT</td>`;
+    for(let i=0;i<6;i++) h+=cell(i, t.sold[i]?t.rev[i]/t.sold[i]:null, 'money', false);
+    h+='</tr>';
+  });
+  return h+'</tbody>';
+}
+function techSectionHTML(st,list,P){
+  const full=STATE_NAMES[st]||st;
+  return `<section class="state" id="st-${st}">
+    <table data-st="${st}" aria-label="${full} technicians">${techTableHTML(st,list,P)}</table>
+  </section>`;
+}
 function render(){
   if(!DATA||!PERIODS) return;
   hideTip();
-  const P=PERIODS[view];
-  const dd=DATA.depts[dept][view];
   const rendered=[]; let out='';
-  for(const st of DATA.states){
-    const d=dd[st];
-    if(!d) continue;
-    if(st!=='ALL' && sum(d.pot)+sum(d.potA)+sum(d.rev)+sum(d.run)===0) continue;
-    rendered.push(st);
-    out+=sectionHTML(st,d,P,P.cur);
+  if(view==='t'){
+    const P=PERIODS.t;
+    const T=DATA.tech[dept];
+    RENDT={};
+    for(const st of DATA.states){
+      if(st==='ALL') continue;
+      const S=T[st]; if(!S) continue;
+      const list=Object.keys(S).map(n=>({n, t:S[n]}))
+        .filter(x=>x.t.run.slice(0,5).some(v=>v>0))
+        .sort((a,b)=>b.t.rev[5]-a.t.rev[5]);
+      if(!list.length) continue;
+      rendered.push(st);
+      RENDT[st]=list;
+      out+=techSectionHTML(st,list,P);
+    }
+    if(!out) out='<div class="status"><div class="box center">No technician activity in the last 5 full weeks for this department.</div></div>';
+  } else {
+    const P=PERIODS[view];
+    const dd=DATA.depts[dept][view];
+    for(const st of DATA.states){
+      const d=dd[st];
+      if(!d) continue;
+      if(st!=='ALL' && sum(d.pot)+sum(d.potA)+sum(d.rev)+sum(d.run)===0) continue;
+      rendered.push(st);
+      out+=sectionHTML(st,d,P,P.cur);
+    }
   }
   $('content').innerHTML=out;
   $('jump').innerHTML='<option value="">Jump to state…</option>'+
@@ -523,10 +611,19 @@ function render(){
   const sc=$('scroll');
   sc.scrollLeft=sc.scrollWidth;
 }
+
 /* ---- tooltip ---- */
 const tip=$('tip'); let tipCell=null;
 function hideTip(){ tipCell=null; tip.style.display='none'; }
-function tipContent(kind,st,i){
+function tipContent(kind,st,i,ti){
+  if(kind==='tech'){
+    const x=RENDT[st][+ti], t=x.t, p=PERIODS.t.periods[i];
+    let h=`<div class="tt">${esc(x.n)} · ${p.l}</div>`;
+    h+=`<div class="tr"><span>Run jobs</span><span>${fmtInt(t.run[i])}</span></div>`;
+    h+=`<div class="tr"><span>Sold</span><span>${fmtInt(t.sold[i])}</span></div>`;
+    h+=`<div class="tr"><span>Revenue</span><span>$${fmtInt(Math.round(t.rev[i]))}</span></div>`;
+    return h;
+  }
   const P=PERIODS[view];
   const d=DATA.depts[dept][view][st];
   const where=(st==='ALL'?'All states':st)+' · '+P.periods[i].l;
@@ -566,7 +663,7 @@ $('content').addEventListener('mouseover',e=>{
   if(c===tipCell) return;
   tipCell=c;
   const st=c.closest('table').dataset.st;
-  tip.innerHTML=tipContent(c.dataset.tip, st, +c.dataset.i);
+  tip.innerHTML=tipContent(c.dataset.tip, st, +c.dataset.i, c.dataset.ti);
   tip.style.display='block'; tip.style.visibility='hidden';
   const r=c.getBoundingClientRect(), tw=tip.offsetWidth, th=tip.offsetHeight;
   let top=r.top-th-8; if(top<8) top=r.bottom+8;
@@ -632,8 +729,9 @@ async function loadData(){
 
 /* ---- controls ---- */
 function setSeg(map){ for(const [id,on] of map){ $(id).classList.toggle('on',!!on); $(id).setAttribute('aria-selected',!!on); } }
-$('btn-w').onclick=()=>{ view='w'; setSeg([['btn-w',1],['btn-m',0]]); render(); };
-$('btn-m').onclick=()=>{ view='m'; setSeg([['btn-w',0],['btn-m',1]]); render(); };
+$('btn-w').onclick=()=>{ view='w'; setSeg([['btn-w',1],['btn-m',0],['btn-t',0]]); render(); };
+$('btn-m').onclick=()=>{ view='m'; setSeg([['btn-w',0],['btn-m',1],['btn-t',0]]); render(); };
+$('btn-t').onclick=()=>{ view='t'; setSeg([['btn-w',0],['btn-m',0],['btn-t',1]]); render(); };
 $('btn-reg').onclick=()=>{ dept='reg'; setSeg([['btn-reg',1],['btn-he',0]]); render(); };
 $('btn-he').onclick =()=>{ dept='he';  setSeg([['btn-reg',0],['btn-he',1]]); render(); };
 $('reload-btn').onclick=()=>loadData();
