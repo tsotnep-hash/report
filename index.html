@@ -186,7 +186,7 @@ footer b{color:var(--ink); font-weight:600;}
     <p><b>Run to Book</b> — Run (by appointment date) ÷ Booked (by lead date).</p>
     <p><b>SAL</b> — leads marked Lost (counted by lead date).</p>
     <p><b>Reasons</b> — hover a Cancellation amount or SAL value to see the reason breakdown.</p>
-    <p><b>Technicians</b> — per-state technician view: the last 5 full weeks (current week excluded) plus the last 90 days, by appointment date. Technicians with no run jobs in those 5 weeks are hidden.</p>
+    <p><b>Technicians</b> — per-state technician view: the last 5 full weeks (current week excluded) plus the last 90 days, by appointment date. Technicians with no run jobs in those 5 weeks are hidden. A technician appears under every state he worked in, and his numbers are the totals across all his jobs in all states.</p>
     <p><b>Technician ADL / CR / AVT</b> — computed within the technician's own run jobs (6-character jobs assigned to them; PI and REDO excluded): ADL = revenue ÷ run, CR = sold ÷ run, AVT = revenue ÷ sold. Hover an ADL value for run / sold / revenue counts.</p>
     <p><b>Dates</b> — Marketing follows the lead creation date; Finances, Service Fulfillment and Sales follow the appointment date. Revenue always follows the appointment date.</p>
   </div>
@@ -424,8 +424,9 @@ function aggregateRows(rows,P){
       const j=P.t.keys.indexOf(iw.year+'-W'+pad2(iw.week));
       const in90=(+da>=P.t.from && +da<=P.t.to);
       if(j>=0 || in90){
-        const TS=techs[dk][st]||(techs[dk][st]={});
-        const tt=TS[tn]||(TS[tn]={run:[0,0,0,0,0,0],sold:[0,0,0,0,0,0],rev:[0,0,0,0,0,0]});
+        const TS=techs[dk];
+        const tt=TS[tn]||(TS[tn]={run:[0,0,0,0,0,0],sold:[0,0,0,0,0,0],rev:[0,0,0,0,0,0],st:{}});
+        tt.st[st]=1;
         const put=x=>{ tt.run[x]++; tt.rev[x]+=rev; if(soldF) tt.sold[x]++; };
         if(j>=0) put(j);
         if(in90) put(5);
@@ -583,9 +584,8 @@ function render(){
     RENDT={};
     for(const st of DATA.states){
       if(st==='ALL') continue;
-      const S=T[st]; if(!S) continue;
-      const list=Object.keys(S).map(n=>({n, t:S[n]}))
-        .filter(x=>x.t.run.slice(0,5).some(v=>v>0))
+      const list=Object.keys(T).map(n=>({n, t:T[n]}))
+        .filter(x=>x.t.st[st] && x.t.run.slice(0,5).some(v=>v>0))
         .sort((a,b)=>b.t.rev[5]-a.t.rev[5]);
       if(!list.length) continue;
       rendered.push(st);
@@ -622,6 +622,7 @@ function tipContent(kind,st,i,ti){
     h+=`<div class="tr"><span>Run jobs</span><span>${fmtInt(t.run[i])}</span></div>`;
     h+=`<div class="tr"><span>Sold</span><span>${fmtInt(t.sold[i])}</span></div>`;
     h+=`<div class="tr"><span>Revenue</span><span>$${fmtInt(Math.round(t.rev[i]))}</span></div>`;
+    h+=`<div class="tr muted"><span>States</span><span>${esc(Object.keys(t.st).sort().join(', '))}</span></div>`;
     return h;
   }
   const P=PERIODS[view];
